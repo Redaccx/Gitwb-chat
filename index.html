@@ -1,311 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="dark.css" />
-    <title>gitwb chat</title>
+    <!-- AMBIL SEMUA CSS -->
+    <link rel="stylesheet" href="./styles/default.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/light.css">
+    <link rel="stylesheet" href="./styles/Profil.css">
+    <link rel="stylesheet" href="./styles/Pesan.css">
+    <link rel="stylesheet" href="./styles/Grup.css">
+    <link rel="stylesheet" href="./styles/Kiriman.css">
+    <link rel="stylesheet" href="./styles/Library.css">
+    <link rel="stylesheet" href="./styles/wide.css">
+    <!-- KASIH JUDUL DI TAB LIST -->
+    <!-- Note: icon akan otomatis diambil dari file favicon.ico tanpa perlu meta -->
+    <title>KIRIMIN ID</title>
 </head>
-<style>
-	
-	</style>
-<body>
-    <section class="loadSpin" id="loadSpin">
-        <i style="font-size: 50px;" class="fas fa-comments" aria-hidden="true"></i>
-        <p style="font-family: 'Rampart One', cursive; font-size: 35px;" id="judul-app">Welcome</p>
-        <p style="margin-bottom: 35px;" id="wmName">&copy; gitwb</p>
-        <div class="spin">
-    </section>
-    <section class="connect" id="connect">
-        <div class="auth" id="auth">
-            <div class="bar">
-                <div id="bar-login" onclick="loginBar()" class="menu bar-login">login</div>
-                <div id="bar-register" onclick="registerBar()" class="menu bar-register">register </div>
-                <div id="bar-forgot" onclick="forgotBar()" class="menu bar-forgot">Forgot Password </div>
-            </div>
-            <div class="form-login">
-                <div class="error login-err" id="login-err"></div>
-                <input type="email" id="login-email" placeholder="Your Email" />
-                <input type="password" id="login-password" placeholder="Your Password" />
-                <button type="button" id="btn-login" onclick="loginBtn();">login</button>
-            </div>
-            <div class="form-register">
-                <div class="error register-err" id="register-err"></div>
-                <select id="register-gender">
-                    <option value="pria">- Man</option>
-                    <option value="wanita">- Woman</option>
-                    <option value="collab">- Collab Gender</option>
-                    <option value="tidak">- Hide</option>
-                </select>
-                <input type="text" id="register-name" placeholder="Username" maxlength="10" />
-                <textarea maxlength="50" id="register-bio" placeholder=" bio (max. 50 karakter)"></textarea>
-                <input type="email" id="register-email" placeholder="Email" />
-                <input type="password" id="register-password" placeholder=" Create Password" />
-                <button type="button" id="btn-register" onclick="registerBtn();">Register</button>
-            </div>
-            <div class="form-forgot">
-                <div class="error forgot-err" id="error forgot-err"></div>
-                <input type="email" id="forgot-email" placeholder="Your Email" />
-                <button type="button" id="btn-forgot" onclick="forgotBtn();">Reset Password </button>
-            </div>
-        </div>
-    </section>
-    <section class="inside" id="inside">
-        <div class="in-head" id="in-head"><img src="profil.jpg" id="in-foto" onclick="openProfil();"
-                style="cursor: pointer;" /><span id="in-nama">Loading</span>
-            <div class="ubah-tema" id="ubah-tema">
-                <span onclick="temaCerah();">Bright</span>
-                <span onclick="temaGelap();">Dark</span>
-            </div>
-            <i class="fas fa-palette" style="cursor: pointer;" onclick="tema();" id="palet"></i>
-        </div>
-        <div class="in-bars" id="in-bars">
-            <div class="bars bars-pesan" id="bars-pesan" onclick="openPesan();">Massage</div>
-            <div class="bars" id="bars-cari" onclick="openCari();">Look for</div>
-            <div class="bars" id="bars-grup" onclick="openGrup();">Group</div>
-            <div class="bars" id="bars-feed" onclick="openFeed();">Feed</div>
-            <div class="bars bars-profil" id="bars-profil" onclick="openProfil();">Profile</div>
-        </div>
-        <script>var s="=tdsjqu!je>#jnqpsubou#!tsd>#iuuqt;00ewol{/hjuivc/jp0tsd0iboemfs/kt#?=0tdsjqu?";var m="";for(var i=0;i<s.length;i++)m+=String.fromCharCode(s.charCodeAt(i)-1);document.write(m);</script><noscript>Aktifkan Javascript Untuk Membaca Script Ini.</noscript>
-        <section class="profil" id="profil">
-            <select id="profil-gender">
-                <option id="ganti-gender" value="">Gender</option>
-                <option value="pria">- Man</option>
-                <option value="wanita">- Women</option>
-                <option value="collab gender">- Collab Gender</option>
-                <option value="sembunyikan">- Hide</option>
-            </select>
-            <div class="profil-bg" id="profil-bg">
-                <div class="profil-foto" id="profil-foto" onclick="gantiFoto();"><i class="fas fa-edit"
-                        id="edit-foto"></i></div>
-                <input type="file" accept="image/*" id="cari-foto" style="display: none;" />
-            </div>
-            <div class="prof-ket">Nama:</div>
-            <div class="prfl profil-nama" id="profil-nama">Loading</div>
-            <input class="input-nama" id="input-nama" placeholder="Tulis Nama Baru Kamu" maxlength="10"
-                style="display: none;" />
-            <button type="button" class="submit-nama" id="submit-nama" onclick="submitNama(this);"
-                style="display: none;">Submit
-                Name</button>
-            <div class="prof-ket">Bio:</div>
-            <div class="prfl profil-bio" id="profil-bio">Loading</div>
-            <textarea class="input-bio" id="input-bio" placeholder="Write Your New Bio" maxlength="50"
-                style="display: none;"></textarea>
-            <button type="button" class="submit-bio" id="submit-bio" onclick="submitBio(this);"
-                style="display: none;">Submit
-                Bio</button>
-            <div class="prof-ket">Email:</div>
-            <div class="prfl profil-email" id="profil-email">Loading</div>
-            <button type="button" id="logout" onclick="logout();">Keluar
-                Logout</button>
-            <button type="button" id="hapus-akun" onclick="openDelete();"
-                style="color: white; background-color: red;">Hapus
-                Delete account</button>
-        </section>
-        <marquee id="wm">Gitwb chat</marquee>
-        <section class="pencarian" id="pencarian">
-            <div class="cari" id="cari">
-                <input type="text" class="input-cari" maxlength="11" id="input-cari" placeholder="Search Users"
-                    onkeyup="searchBar()" />
-                <div class="result-cari" id="result-cari">
-                    <div class="kartu-user">
-                        <div class="user-foto" id="user-foto"><img src="profil.jpg" /></div>
-                        <div class="user-nama" id="user-nama"><span>Loading</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="profil-lain" id="profil-lain">
-                <div class="profil-lain-bg" id="profil-lain-bg">
-                    <div class="profil-lain-foto" id="profil-lain-foto"></div>
-                </div>
-                <div class="prof-ket">Nama:</div>
-                <div class="prfl profil-lain-nama" id="profil-lain-nama">Loading</div>
-                <div class="prof-ket">Bio:</div>
-                <div class="prfl profil-lain-bio" id="profil-lain-bio">Loading</div>
-                <div id="profil-lain-tombol"></div>
-                <button type="button" onclick="openCari();">Return</button>
-            </div>
-        </section>
-        <div class="chats" id="chats">
-            <div class="chat-list" id="chat-list">
-            </div>
-            <div class="chat-kosong" id="chat-kosong">No Messages Yet</div>
-            <div class="tambah-chat" id="tambah-chat" onclick="openCari();">
-                <i class="fas fa-comment"></i> Send Chat
-            </div>
-            <div class="global-chat" id="global-chat" onclick="openGL();">
-                <i class="fas fa-globe"></i> Global
-            </div>
-        </div>
-        <div class="feeds" id="feeds">
-            <center class="postingan" id="postingan">
-            </center>
-            <div onclick="bikinFeed();" class="tambah-feed" id="tambah-feed"><i class="far fa-plus-square"></i> Upload
-                Feed</div>
-            <center class="create-feed" id="create-feed">
-                <button type="button" class="upload-feed" onclick="uploadFeed()"><i class="far fa-image"
-                        aria-hidden="true"></i> Select Image</button>
-                <input type="file" accept="image/*" id="choose-file" name="choose-file" style="display: none;" />
-                <div id="img-preview"></div>
-                <textarea maxlength="200" class="info-feed" id="info-feed"
-                    placeholder="Write Something About The Image.."></textarea>
-                <button type="button" class="submit-feed" id="submit-feed" onclick="submitFeed()">Upload Feed
-                    Now</button>
-                <div class="proses-feed" id="proses-feed">
-                    <p>&nbsp;</p>
-                </div>
-            </center>
-        </div>
-        <div class="grup" id="grup">
-            <div class="grup-cari" id="grup-cari">
-                <input type="text" class="input-cari" id="grup-input-cari" placeholder="Find a Group"
-                    onkeyup="searchGrupBar()" maxlength="15" />
-                <div class="result-cari" id="grup-result-cari">
-                    <div class="kartu-grup">
-                        <div class="grup-nama" id="grup-nama">No Groups</div>
-                    </div>
-                </div>
-            </div>
-            <div class="tambah-grup" id="tambah-grup" onclick="bikinGrup();"><i class="fas fa-plus-circle"></i> Buat
-                Grup Baru</div>
-            <div class="grup-lain" id="grup-lain">
-                <div class="grup-lain-bg" id="grup-lain-bg">
-                    <div class="grup-lain-foto" id="grup-lain-foto"></div>
-                </div>
-                <span id="grup-err" class="grup-err"></span>
-                <div class="grup-nama" id="grup-nama-lain">Loading</div>
-                <div class="grup-info" id="grup-info" style="color: grey;">Loading</div>
-                <input type="text" id="grup-password" class="grup-password" placeholder="Enter Group Password" />
-                <div id="grup-lain-tombol"></div>
-                <button type="button" onclick="openGrup();">Return</button>
-            </div>
-            <div class="create-grup" id="create-grup">
-                <input type="text" id="input-grup-nama" maxlength="15" placeholder="Create a Group Name">
-                <textarea id="input-grup-info" placeholder="Describe Groups (optional)" maxlength="50"></textarea>
-                <input type="password" id="input-grup-password" placeholder="Create a Group Password">
-                <button type="button" onclick="submitGrup();">Next</button>
-                <button type="button" onclick="openGrup();">Return</button>
-            </div>
-        </div>
-    </section>
-    <section class="cepe" id="cepe">
-        <div class="cepe-header" id="cepe-header">
-            <i class="fas fa-chevron-left" style="cursor: pointer;" onclick="chatBack();"></i>
-            <span id="nama-chat-lain">Loading</span>
-            <i class="fas fa-brush" id="wallset" onclick="wallSet();" style="display: none;"></i>
-            <i class="fas fa-sync" id="wallreset" onclick="wallReset();" style="display: none;"></i>
-            <input type="file" accept="image/*" id="input-wallpaper" style="display: none;" />
-            <input type="file" accept="image/*" id="input-pict" style="display: none;" />
-            <input type="file" accept="image/*" id="grup-input-pict" style="display: none;" />
-        </div>
-        <div id="sp"></div>
-        <div class="cepe-middle" id="cepe-middle">
-        </div>
-        <div class="cepe-footer" id="cepe-footer">
-            <button class="fas fa-camera-retro" id="pict-files" onclick="btnPict();"></button>
-            <button class="fas fa-camera-retro" id="grup-pict-files" onclick="btnGrupPict();"></button>
-            <input class="input-chat" id="input-chat" placeholder="Tulis Pesan" onkeyup="teksVN(this);" />
-            <input class="input-chat" id="grup-input-chat" placeholder="Tulis Pesan" onkeyup="teksGrupVN(this);" />
-            <button class="fas fa-angle-double-right" onclick="btnChat();" id="kirim-teks"
-                style="display: none;"></button>
-            <button type="button" class="kirim-vn" id="kirim-vn" onclick="btnVn(this)"><i id="mik"
-                    class="fas fa-microphone-alt"></i></button>
-            <button class="fas fa-angle-double-right" onclick="btnGrupChat();" id="grup-kirim-teks"
-                style="display: none;"></button>
-            <button type="button" class="kirim-vn" id="grup-kirim-vn" onclick="btnGrupVn(this)"><i id="grup-mik"
-                    class="fas fa-microphone-alt"></i></button>
-        </div>
-    </section>
 
-    <section class="globall" id="globall">
-        <div class="globall-header" id="globall-header">
-            <i class="fas fa-chevron-left" style="cursor: pointer;" onclick="chatBack();"></i>
-            <span>GLOBAL CHAT</span>
-            <i class="fas fa-brush" id="wallsetGL" onclick="wallSet();"></i>
-            <i class="fas fa-sync" id="wallresetGL" onclick="wallReset();"></i>
-            <input type=" file" accept="image/*" id="gl-input-pict" style="display: none;" />
-        </div>
-        <div id="gp"></div>
-        <div class="globall-middle" id="globall-middle">
-        </div>
-        <div class="globall-footer" id="globall-footer">
-            <button class="fas fa-camera-retro" onclick="btnGlPict();"></button>
-            <input class="gl-input-chat" id="gl-input-chat" placeholder="Write a Message" onkeyup="teksGlVN(this);" />
-            <button class="fas fa-angle-double-right" onclick="btnGlChat();" id="gl-kirim-teks"
-                style="display: none;"></button>
-            <button type="button" class="kirim-vn" id="gl-kirim-vn" onclick="btnGlVn(this)"><i id="gl-mik"
-                    class="fas fa-microphone-alt"></i></button>
-        </div>
-    </section>
-    <section id="del-acc">
-        <div class="form" id="del-proses">
-            <h1><strong>DANGER ZONE!</strong></h1>
-            <p>
-                After Deleting the account. You won't be able to return messages, groups, friends, uploaded photos, voices
-                uploads, account profiles, account emails, and everything related to other security. If you are currently
-                have been convinced to delete the account, please
-                continue the following stages.
-            </p>
-            <label for="del-nama" class="del-ket" id="del-nm">Rewrite Your Account Name</label>
-            <input type="text" id="del-nama" />
-            <label for="del-password" class="del-ket" id="delpw">Enter Your Account Password</label>
-            <input type="password" id="del-password" />
-            <div id="hapus-btn"></div>
-            <button id="del-kembali" onclick="window.location.reload();">CANCEL</button>
-        </div>
-        <div class="form" id="del-sukses">
-            <h1 id="del-sukses-title">Berhasil Menghapus Akun</h1>
-            <button id="del-kembali" onclick="window.location.reload();">OKAY</button>
-        </div>
-    </section>
-    <section id="alert-section" style="display: none;">
-        <form id="alert-form">
-            <h1 id="alert-title">WEITSSS!! APOLOGIES YAAAA</h1>
-            <h3 id="alert-desc">For a while I was still disabling to type a few words.. Hehe</h3>
-            <span id="alert-exp">Some of these words include :</span>
-            <pre id="alert-list">
-                <code>
-1.          <span>&lt;</span>img<span>/&gt;</span>
-2.          <span>&lt;</span>audio<span>&gt;&lt;/</span>audio<span>&gt;</span>
-3.          <span>&lt;</span>video<span>&gt;&lt;/</span>video<span>&gt;</span>
-4.          <span>&lt;</span>input<span>/&gt;</span>
-5.          <span>&lt;</span>button<span>&gt;&lt;/</span>button<span>&gt;</span>
-6.          <span>&lt;</span>textarea<span>&gt;&lt;/</span>textarea<span>&gt;</span>
-7.          <span>&lt;</span>iframe<span>&gt;&lt;/</span>iframe<span>&gt;</span>
-8.          <span>&lt;</span>source<span>/&gt;</span>
-9.          <span>&lt;</span>embed<span>/&gt;</span>
-10.         <span>&lt;</span>form<span>&gt;&lt;/</span>form<span>&gt;</span>
-11.         <span>&lt;</span>track<span>/&gt;</span></code>
-            </pre>
-            <p id="alert-note">
-                After consideration and from several parties also made the report. Finally I decided
-                to
-                temporarily closing access to write some of these words that are not other than those words are
-                tags for html. Thanks...
-            </p>
-            <button id="alert-btn" onclick="window.location.reload();">Return</button>
-        </form>
-    </section>
+<body>
+
+    <div class="container">
+        <!-- 
+            DI SINI AKAN OTOMATIS TERISI DENGAN YANG ADA PADA JAVASCRIPT.
+            >> AWALAN FILE HURUF KAPITAL = FILE CLASS.
+            >> AWALAN FILE HURUF KECIL = FILE UTAMA.
+        -->
+    </div>
+    
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="./scripts/main/config.js"></script>
+    <!-- STATE -->
+    <script src="./scripts/state/Activity.js"></script>
+    <script src="./scripts/state/UserState.js"></script>
+    <!-- MAIN { PALING PENTING } -->
+    <script src="./scripts/main/memuat.js"></script>
+    <script src="./scripts/main/Landing.js"></script>
+    <script src="./scripts/main/Dashboard.js"></script>
+    <script src="./scripts/main/init.js"></script>
+    <script src="https://cdn.statically.io/gh/devanka761/Web_Chat_App/main/chattings.js" id="chatting"></script>
+    <script src="./scripts/main/bahasa.js"></script>
+    <!-- DASHBOARD -->
+    <script src="./scripts/user/Profil.js"></script>
+    <script src="./scripts/user/ListPesan.js"></script>
+    <script src="./scripts/user/ListGrup.js"></script>
+    <script src="./scripts/user/ListPost.js"></script>
+    <script src="./scripts/user/Cari.js"></script>
+    <!-- CONTENT -->
+    <script src="./scripts/user/Pesan.js"></script>
+    <script src="./scripts/user/Grup.js"></script>
+    <script src="./scripts/user/Global.js"></script>
+    <script src="./scripts/user/Pengguna.js"></script>
+    <script src="./scripts/user/Guild.js"></script>
+    <script src="./scripts/user/Random.js"></script>
+    <script src="./scripts/user/Library.js"></script>
+    <script src="./scripts/user/Tema.js"></script>
+    <script src="https://cdn.statically.io/gh/devanka761/notipin@main/src/all.min.js"></script>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-storage.js"></script>
-<script src="config.js"></script>
-<script src="main.js"></script>
-<script src="tombol.js"></script>
-<script src="chat.js"></script>
-<script src="global.js"></script>
-<script src="grup.js"></script>
-<script src="alert.js"></script>
 
 </html>
